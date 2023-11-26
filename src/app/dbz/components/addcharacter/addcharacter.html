@@ -1,8 +1,8 @@
 <h4>Agregar Personaje</h4>
-<form class="row">
-<!-- o ponemos name o ponemos standalone = true, si no da error en consola -->    
+<form class="row" (ngSubmit)="emitCharacter()">
+<!-- o ponemos name o ponemos [ngModelOptions]="{standalone: true}" si no da error en consola -->    
     <input type="text" class="form-control mb-2" [(ngModel)]="character.name" 
-    [ngModelOptions]="{standalone: true}" placeholder="Nombre">
+     name="name" placeholder="Nombre">
 
     <input type="number"  class="form-control mb-2" [(ngModel)]="character.power"
      name="power" placeholder="Poder" >

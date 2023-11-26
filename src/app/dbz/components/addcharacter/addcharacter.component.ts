@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {  Component, EventEmitter, Output } from '@angular/core';
 import { Character } from '../../interfaces/character.interface';
 import { FormsModule } from '@angular/forms';
 
@@ -11,10 +11,11 @@ import { FormsModule } from '@angular/forms';
   ],
   templateUrl: "./addcharacter.html",
   styleUrls: ['./addcharacter.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCharacterComponent {
-[x: string]: any; 
+
+  @Output()
+  public onNewCharacter: EventEmitter<Character> = new EventEmitter();
 
   public character: Character = {
     name: '',
@@ -22,7 +23,15 @@ export class AddCharacterComponent {
   }
 
   emitCharacter() {
-    console.log(this.character);
+
+    //debugger;
+
+    if ( this.character.name.length === 0 ) return;
+
+    this.onNewCharacter.emit(this.character);
+
+    this.character = {name : '', power: 0};
+
   }
 
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Character } from '../../interfaces/character.interface';
 
 @Component({
@@ -18,5 +18,18 @@ export class ListComponent {
  public characterList: Character[] = [
     {name: 'epis', power: 2}
 ];
+
+
+@Output()
+public onDelete: EventEmitter<number> = new EventEmitter();
+//public onDelete =  new EventEmitter<number>;
+
+onDeleteCharacter(index: number):void{
+
+  this.onDelete.emit(index);
+  console.log(index);
+  
+
+}
 
 }
